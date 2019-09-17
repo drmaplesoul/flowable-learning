@@ -1,0 +1,59 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=linux96)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)))
+    username: sbfpdata
+    password: sbfpdata
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  application:
+    name: workflow
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    host: linux96
+    port: 6379
+    # 密码 没有则可以不填
+    password:
+    # 如果使用的jedis 则将lettuce改成jedis即可
+    lettuce:
+      pool:
+        # 最大活跃链接数 默认8
+        max-active: 8
+        # 最大空闲连接数 默认8
+        max-idle: 8
+        # 最小空闲连接数 默认0
+        min-idle: 0
+
+
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: com.zdr.workflow.entity
+  mapperLocations: classpath*:com/zdr/workflow/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+#mybatis-plus
+mybatis-plus:
+  type-aliases-package: com.zdr.workflow.entity
+  mapper-locations: classpath*:com/zdr/workflow/mapper/*.xml
+
+logging:
+  path: /logs
+  level:
+    root: info
+    org.springframework.web: error
+    org.springframework.test: info
+server:
+  port: 8010
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://linux96:8500/eureka
+
+flowable:
+  #关闭定时任务JOB
+  async-executor-activate: false
