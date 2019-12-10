@@ -50,10 +50,16 @@
             <scope>test</scope>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.oracle</groupId>-->
+<!--            <artifactId>ojdbc6</artifactId>-->
+<!--            <version>11.2.0.3</version>-->
+<!--        </dependency>-->
+        <!-- 内存数据库h2-->
         <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.3</version>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -126,10 +132,16 @@
         <!--=====junit5======-->
 
         <!--flowable工作流依赖-->
+        <!--<dependency>-->
+        <!--<groupId>org.flowable</groupId>-->
+        <!--<artifactId>flowable-spring-boot-starter</artifactId>-->
+        <!--<version>6.3.0</version>-->
+        <!--</dependency>-->
+        <!--基础模式-->
         <dependency>
-        <groupId>org.flowable</groupId>
-        <artifactId>flowable-spring-boot-starter</artifactId>
-        <version>6.3.0</version>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-basic</artifactId>
+            <version>6.3.0</version>
         </dependency>
     </dependencies>
 

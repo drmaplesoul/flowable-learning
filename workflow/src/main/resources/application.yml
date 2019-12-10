@@ -1,12 +1,23 @@
 #默认使用配置
+server:
+  port: 8010
 spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=linux96)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)))
-    username: sbfpdata
-    password: sbfpdata
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=linux96)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)))
+#    username: sbfpdata
+#    password: sbfpdata
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+  #===================================
+  #使用内存数据库
+#    url: jdbc\:h2\:file\:I:\\GitProjects\\learning\\flowable-learning\\workflow\\h2db
+    url: jdbc:h2:file:I:\GitProjects\learning\flowable-learning\workflow\h2db
+    #url = jdbc:h2:file:~/.h2/testdb
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  #===================================
   application:
     name: workflow
   main:
@@ -45,8 +56,7 @@ logging:
     root: info
     org.springframework.web: error
     org.springframework.test: info
-server:
-  port: 8010
+
 
 
 eureka:

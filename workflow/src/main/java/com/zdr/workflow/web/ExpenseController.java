@@ -11,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping(value = "expense")
 public class ExpenseController {
     @Autowired
@@ -49,13 +52,19 @@ public class ExpenseController {
      * 获取审批管理列表
      */
     @RequestMapping(value = "/list")
-    @ResponseBody
-    public Object list(String userId) {
+//    @ResponseBody
+    public List<Map> list(String userId) {
         List<Task> tasks = taskService.createTaskQuery().taskAssignee(userId).orderByTaskCreateTime().desc().list();
+        List<Map> list = new ArrayList<>();
         for (Task task : tasks) {
             System.out.println(task.toString());
+            Map item = new HashMap();
+            item.put("id",task.getId());
+            item.put("name",task.getName());
+            item.put("proinstId",task.getProcessInstanceId());
+            list.add(item);
         }
-        return tasks.toArray().toString();
+        return list;
     }
 
     /**
